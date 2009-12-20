@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="test" />
+		<Option pch_mode="2" />
+		<Option compiler="avrgcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/test.elf" prefix_auto="1" extension_auto="0" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="avrgcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/test.elf" prefix_auto="1" extension_auto="0" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="avrgcc" />
+				<Compiler>
+					<Add option="-Os" />
+				</Compiler>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-mmcu=atmega328p" />
+			<Add option="-DF_CPU=16000000UL" />
+		</Compiler>
+		<Linker>
+			<Add option="-mmcu=atmega328p" />
+			<Add option="-Wl,-Map=$(TARGET_OUTPUT_FILE).map,--cref" />
+		</Linker>
+		<ExtraCommands>
+			<Add after="avr-objcopy -O ihex -R .eeprom -R .eesafe $(TARGET_OUTPUT_FILE) $(TARGET_OUTPUT_FILE).hex" />
+			<Add after="avr-objcopy --no-change-warnings -j .eeprom --change-section-lma .eeprom=0 -O ihex $(TARGET_OUTPUT_FILE) $(TARGET_OUTPUT_FILE).eep.hex" />
+			<Add after="avr-objdump -h -S $(TARGET_OUTPUT_FILE) &gt; $(TARGET_OUTPUT_FILE).lss" />
+		</ExtraCommands>
+		<Unit filename="HardwareSerial.cpp" />
+		<Unit filename="HardwareSerial.h" />
+		<Unit filename="Print.cpp" />
+		<Unit filename="Print.h" />
+		<Unit filename="WConstants.h" />
+		<Unit filename="WInterrupts.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="WMath.cpp" />
+		<Unit filename="WProgram.h" />
+		<Unit filename="binary.h" />
+		<Unit filename="main.cxx" />
+		<Unit filename="pins_arduino.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="pins_arduino.h" />
+		<Unit filename="wiring.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="wiring.h" />
+		<Unit filename="wiring_analog.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="wiring_digital.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="wiring_private.h" />
+		<Unit filename="wiring_pulse.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="wiring_shift.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Extensions>
+			<envvars />
+			<code_completion />
+			<lib_finder disable_auto="1" />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
